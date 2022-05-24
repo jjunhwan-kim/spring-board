@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Spring Board</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <h1>Post List</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">글번호</th>
+            <th scope="col">제목</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="post : ${posts}">
+            <td>
+                <div th:text="${post.id}">id</div>
+            </td>
+            <td>
+                <div th:text="${post.title}" th:onclick="|location.href='@{/posts/{id}(id=${post.id})}'|" style="cursor:pointer;">title</div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="/posts/new" role="button" class="btn btn-primary">등록</a>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>
