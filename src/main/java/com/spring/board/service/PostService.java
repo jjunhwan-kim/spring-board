@@ -1,6 +1,7 @@
 package com.spring.board.service;
 
 import com.spring.board.domain.Post;
+import com.spring.board.repository.PostDataJpaRepository;
 import com.spring.board.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,8 @@ import java.util.Optional;
 @Service
 public class PostService {
 
-    private final PostRepository postRepository;
+    //private final PostRepository postRepository;
+    private final PostDataJpaRepository postRepository;
 
     public Long save(Post post) {
         postRepository.save(post);
@@ -26,7 +28,8 @@ public class PostService {
     }
 
     public Long update(Post post) {
-        postRepository.update(post);
+        //postRepository.update(post); // Jdbc, JdbcTemplate, Jpa
+        postRepository.save(post); // Data Jpa
         return post.getId();
     }
 
