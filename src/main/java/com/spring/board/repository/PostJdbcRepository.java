@@ -15,7 +15,6 @@ import java.util.Optional;
 
 @Slf4j
 @RequiredArgsConstructor
-@Repository
 public class PostJdbcRepository implements PostRepository {
 
     private final DataSource dataSource;
