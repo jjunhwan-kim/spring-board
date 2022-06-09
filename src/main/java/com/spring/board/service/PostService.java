@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @Transactional
@@ -18,23 +17,28 @@ public class PostService {
     //private final PostRepository postRepository;
     private final PostDataJpaRepository postRepository;
 
-    public Long save(Post post) {
-        postRepository.save(post);
-        return post.getId();
+    public Post save(Post post) {
+        return postRepository.save(post);
     }
 
-    public Optional<Post> findOne(Long id) {
-        return postRepository.findById(id);
+    public Post findOne(Long id) {
+        return postRepository.findById(id).orElseThrow(() -> new IllegalStateException("Entity Not Found"));
     }
 
-    public Long update(Post post) {
-        //postRepository.update(post); // Jdbc, JdbcTemplate, Jpa
-        postRepository.save(post); // Data Jpa
-        return post.getId();
+    public Post update(Post post) {
+        //postRepository.update(post); // Jdbc, JdbcTemplate
+
+        // Jpa
+        Post foundPost = postRepository.findById(post.getId()).orElseThrow(() -> new IllegalStateException("Entity Not Found"));
+        foundPost.setTitle(post.getTitle());
+        foundPost.setContent(post.getContent());
+        return foundPost;
     }
 
-    public void delete(Long id) {
+    public Post delete(Long id) {
+        Post post = postRepository.findById(id).orElseThrow(() -> new IllegalStateException("Entity Not Found"));
         postRepository.deleteById(id);
+        return post;
     }
 
     public List<Post> findAll() {

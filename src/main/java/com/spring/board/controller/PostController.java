@@ -33,9 +33,7 @@ public class PostController {
 
     @GetMapping("/posts/{id}")
     public String getPost(@PathVariable Long id, Model model) {
-        Post post = postService.findOne(id).orElseThrow(() -> {
-            throw new IllegalStateException("Entity Not Found");
-        });
+        Post post = postService.findOne(id);
         PostUpdateForm postUpdateForm = new PostUpdateForm();
         postUpdateForm.setId(post.getId());
         postUpdateForm.setTitle(post.getTitle());
@@ -46,9 +44,7 @@ public class PostController {
 
     @GetMapping("/posts/update/{id}")
     public String update(@PathVariable Long id, Model model) {
-        Post post = postService.findOne(id).orElseThrow(() -> {
-            throw new IllegalStateException("Entity Not Found");
-        });
+        Post post = postService.findOne(id);
         PostUpdateForm postUpdateForm = new PostUpdateForm();
         postUpdateForm.setId(post.getId());
         postUpdateForm.setTitle(post.getTitle());
