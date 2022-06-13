@@ -14,8 +14,8 @@ import java.util.List;
 @Service
 public class PostService {
 
-    //private final PostRepository postRepository;
-    private final PostDataJpaRepository postRepository;
+    private final PostRepository postRepository;
+    //private final PostDataJpaRepository postRepository;
 
     public Post save(Post post) {
         return postRepository.save(post);
@@ -42,8 +42,8 @@ public class PostService {
     }
 
     public List<Post> findAll() {
-        //return postRepository.findAll();
+        return postRepository.findAll();
         //return postRepository.findAllByOrderByIdDesc();
-        return postRepository.findAllByIdDesc();
+        //return postRepository.findAllByIdDesc();
     }
 }

@@ -21,6 +21,7 @@ public class PostJdbcRepository implements PostRepository {
 
     @Override
     public Post save(Post post) {
+        log.info("PostJdbcRepository.save");
         String sql = "insert into post (title, content) values (?, ?)";
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -48,6 +49,7 @@ public class PostJdbcRepository implements PostRepository {
 
     @Override
     public Optional<Post> findById(Long id) {
+        log.info("PostJdbcRepository.findById");
         String sql = "select * from post where post_id = ?";
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -76,6 +78,7 @@ public class PostJdbcRepository implements PostRepository {
 
     @Override
     public Post update(Post post) {
+        log.info("PostJdbcRepository.update");
         String sql = "update post set title = ?, content = ? where post_id = ?";
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -97,6 +100,7 @@ public class PostJdbcRepository implements PostRepository {
 
     @Override
     public void deleteById(Long id) {
+        log.info("PostJdbcRepository.deleteById");
         String sql = "delete from post where post_id = ?";
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -115,6 +119,7 @@ public class PostJdbcRepository implements PostRepository {
 
     @Override
     public List<Post> findAll() {
+        log.info("PostJdbcRepository.findAll");
         String sql = "select * from post";
         Connection connection = null;
         PreparedStatement preparedStatement = null;

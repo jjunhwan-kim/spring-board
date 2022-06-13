@@ -19,10 +19,10 @@ public class SpringConfig {
     private final DataSource dataSource;
     private final EntityManager entityManager;
 
-    //@Bean
+    @Bean
     public PostRepository postRepository() {
-        //return new PostJdbcRepository(dataSource);
+        return new PostJdbcRepository(dataSource);
         //return new PostJdbcTemplateRepository(dataSource);
-        return new PostJpaRepository(entityManager);
+        //return new PostJpaRepository(entityManager);
     }
 }
