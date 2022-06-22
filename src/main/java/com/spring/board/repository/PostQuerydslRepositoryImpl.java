@@ -22,4 +22,13 @@ public class PostQuerydslRepositoryImpl implements PostQuerydslRepository {
                 .orderBy(post.id.desc())
                 .fetch();
     }
+
+    @Override
+    public Boolean existsAllByIdIn(List<Long> ids) {
+        Long count = jpaQueryFactory.select(post.count())
+                .from(post)
+                .where(post.id.in(ids))
+                .fetchOne();
+        return count == ids.size();
+    }
 }

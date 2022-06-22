@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface PostQuerydslRepository {
     List<Post> findAllByIdDesc();
+    Boolean existsAllByIdIn(List<Long> ids);
 }
